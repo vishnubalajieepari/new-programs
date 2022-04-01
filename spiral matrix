@@ -1,0 +1,35 @@
+vector<int> spiralOrder(vector<vector<int>>& mat) {
+        int s_row=0,s_col=0,c=0;
+        int t=mat.size()*(mat[0].size());
+        int e_row=mat.size()-1;
+        int e_col=mat[0].size()-1;
+        vector<int>ans;
+        while(c<t)
+        {
+            for(int i=s_col;i<=e_col && c!=t;i++)
+            {
+                ans.push_back(mat[s_row][i]);
+                c++;
+            }
+            s_row++;
+            for(int i=s_row;i<=e_row && c!=t;i++)
+            {
+                ans.push_back(mat[i][e_col]);
+                c++;
+            }
+            e_col--;
+            for(int i=e_col;i>=s_col && c!=t;i--)
+            {
+                ans.push_back(mat[e_row][i]);
+                c++;
+            }
+            e_row--;
+            for(int i=e_row;i>=s_row && c!=t;i--)
+            {
+                ans.push_back(mat[i][s_col]);
+                c++;
+            }
+            s_col++;
+        }
+        return ans;
+    }
