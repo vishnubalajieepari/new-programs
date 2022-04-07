@@ -1,0 +1,27 @@
+string LCP(string ar[], int n)
+    {
+        // code here
+        if(n==0)
+            return "-1";
+        if(n==1)
+            return ar[0];
+        string res="";
+        sort(ar,ar+n);
+        int len=ar[0].size();
+        for(int i=0;i<len;i++)
+        {
+            if(ar[0][i]==ar[n-1][i])
+            {
+                res+=ar[0][i];
+            }
+            else
+            {
+                break;
+            }
+        }
+        if (res.size()==0)
+        {
+            return "-1";
+        }
+        return res;
+    }
