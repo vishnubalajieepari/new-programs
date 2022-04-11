@@ -1,0 +1,28 @@
+void com(int i,vector<vector<int>>&res,int sum,vector<int>&v1,vector<int>ve,int t)
+    {
+        if(i==ve.size())
+        {
+            if(sum==t)
+            {
+                res.push_back(v1);
+            }
+            return;
+        }
+        v1.push_back(ve[i]);
+        sum+=ve[i];
+        if(sum<=t)
+        {
+        com(i,res,sum,v1,ve,t);
+        }
+        v1.pop_back();
+        sum-=ve[i];
+        com(i+1,res,sum,v1,ve,t);
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        int n;
+        vector<int>dp;
+        vector<vector<int>>res;
+        n=candidates.size();
+        com(0,res,0,dp,candidates,target);
+        return res;
+    }
