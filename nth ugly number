@@ -1,0 +1,40 @@
+int nthUglyNumber(int n) {
+        vector<int>res(n+1,0);
+        res[0]=1;
+        int n2=0,n3=0,n5=0;
+        for(int i=1;i<=n;i++)
+        {
+            int num2=2*res[n2];
+            int num3=3*res[n3];
+            int num5=5*res[n5];
+            int next_min=min(num2,min(num3,num5));
+            res[i]=next_min;
+            if(num2==next_min)
+                n2++;
+            if(num3==next_min)
+                n3++;
+            if(num5==next_min)
+                n5++;
+        }
+        return res[n-1];
+    }
+    //to check the number is ugly or not
+    bool isugly(int n)
+    {
+      if(n==0)
+          return false;
+      if(n==1)
+          return true;
+      while(n!=1&&(n%2==0||n%3==0||n%5==0))
+      {
+          if(n%2==0)
+              n/=2;
+          else if(n%3==0)
+              n/=3;
+          else if(n%5==0)
+              n/=5;
+      }
+      if(n==1)
+          return true;
+      return false;
+    }
