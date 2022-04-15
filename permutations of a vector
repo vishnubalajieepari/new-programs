@@ -1,0 +1,26 @@
+void printpermut(int n,vector<int>nums,vector<int>&ds,vector<vector<int>>&ve,vector<int>&vis)
+    {
+        if(n==ds.size())
+        {
+            ve.push_back(ds);
+            return;
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(vis[i]!=1)
+            {
+                vis[i]=1;
+                ds.push_back(nums[i]);
+                printpermut(n,nums,ds,ve,vis);
+                vis[i]=0;
+                ds.pop_back();
+            }
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        int n=nums.size();
+        vector<int>vis(n+1,0),ds;
+        vector<vector<int>>ve;
+        printpermut(n,nums,ds,ve,vis);
+        return ve;
+    }
