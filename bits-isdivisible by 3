@@ -7,14 +7,14 @@
 	        {
 	           if(i%2)
 	           {
-	               o++;
+	               o++;//finding odd index set bits
 	           }
 	           else
 	           {
-	               e++;
+	               e++;//finding even index set bits
 	           }
 	        }
 	    }
-	    int num=max(o-e,e-o);
+	    int num=max(o-e,e-o);// taking the maximum difference between the two counts
 	   return num%3==0;
 	}
