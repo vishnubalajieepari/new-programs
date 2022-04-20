@@ -1,0 +1,31 @@
+vector<int> singleNumber(vector<int>& nums) {
+        vector<int>ve;
+        int a1=nums[0];
+        for(int i=1;i<nums.size();i++)
+        {
+            a1^=nums[i];
+        }
+        int res1=0,res2=0;
+        int c=0;
+        while(a1)
+        {
+            if(a1&1)
+                break;
+            c++;
+            a1=a1>>1;
+        }
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]&(1<<c))
+            {
+                res1^=nums[i];
+            }
+            else
+            {
+                res2^=nums[i];
+            }
+        }
+        ve.push_back(res1);
+        ve.push_back(res2);
+        return ve;
+    }
