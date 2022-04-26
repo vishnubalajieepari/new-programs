@@ -1,0 +1,34 @@
+ void preorder(TreeNode *node,vector<int>&ve)
+    {
+        if(node==NULL)
+        {
+            return;
+        }
+        ve.push_back(node->val);
+        preorder(node->left,ve);
+        preorder(node->right,ve);
+    }
+    void flatten(TreeNode* root) {
+        TreeNode *temp=root;
+        vector<int>ve;
+        preorder(root,ve);
+        for(int i=0;i<ve.size();i++)
+        {
+            if(temp->right==NULL)//if right is null then we have to create a new node
+            {
+                temp->val=ve[i];
+                if(i!=ve.size()-1)//if not last node then create node otherwise just assign the value
+                {
+                    TreeNode *node=new TreeNode();
+                    temp->right=node;
+                    temp->left=NULL;
+                }
+            }
+            else
+            {
+                temp->val=ve[i];
+                temp->left=NULL;//making the left address always null as we need flatten towards right
+            }
+            temp=temp->right;
+        }
+    }
