@@ -1,0 +1,31 @@
+int longestValidParentheses(string s) {
+        if(s.size()==0)
+        {
+            return 0;
+        }
+        int maxi=0,l=0,n=s.size();
+        stack<int>st;            // stack for maintaining indices of '(' &')' character values
+        vector<int>ve(n,0);      // vector for keeping values of the indices of parenthesis
+        for(int i=0;i<s.size();i++)
+        {
+            if(s[i]=='(')
+            {
+                st.push(i);
+            }
+            else if(s[i]==')' && !st.empty())
+            {
+                ve[st.top()]=1;
+                ve[i]=1;
+                st.pop();
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(!ve[i])        // if vector contains 0 then assign the length=0
+                l=0;
+            else
+                l++;          // increment the length whenever vector contains value as 1
+            maxi=max(maxi,l); // update the max length for every iteration
+        }
+        return maxi;
+    }
